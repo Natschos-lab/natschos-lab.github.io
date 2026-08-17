@@ -1,19 +1,208 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Natschos Lab</title>
+    <title>Bienvenue sur la page de jeux</title>
+    <style>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5206301645535290"
      crossorigin="anonymous"></script>
 
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0b0f19;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        body::before,
+        body::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            animation: float 12s infinite ease-in-out alternate;
+        }
+
+        body::before {
+            width: 450px;
+            height: 450px;
+            background: rgba(144, 30, 80, 0.45);
+            top: 5%;
+            left: 10%;
+        }
+
+        body::after {
+            width: 550px;
+            height: 550px;
+            background: rgba(29, 78, 216, 0.4);
+            bottom: 5%;
+            right: 10%;
+            animation-delay: -6s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(40px, -40px) scale(1.2);
+            }
+        }
+
+        /* --- LE SUPER TITRE --- */
+        .page-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-align: center;
+            margin: 0 0 50px 0;
+            letter-spacing: 3px;
+
+            background: linear-gradient(45deg, #ff007f, #00d4ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            /* Correction ajoutée ici ! */
+            -webkit-text-fill-color: transparent;
+
+            filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.4));
+            z-index: 1;
+        }
+
+        /* --- GALERIE FLEXBOX (Version Bureau) --- */
+        .flex-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 60px;
+            justify-content: center;
+            align-items: center;
+            max-width: 1200px;
+            z-index: 1;
+        }
+
+        /* --- EFFET "GLASSMORPHISM" --- */
+        .image-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            border-radius: 24px;
+            padding: 20px;
+
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .image-link:hover {
+            transform: translateY(-15px) scale(1.05);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6),
+                inset 0 0 20px rgba(255, 255, 255, 0.05);
+        }
+
+        /* --- LES IMAGES --- */
+        .image-link img {
+            display: block;
+            max-width: 100%;
+            max-height: 180px;
+            border-radius: 12px;
+            object-fit: contain;
+            filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.5));
+            transition: filter 0.3s ease;
+        }
+
+        .image-link:hover img {
+            filter: drop-shadow(0 8px 16px rgba(255, 255, 255, 0.15));
+        }
+
+        /* ========================================================
+     RÉSOLUTION DES PROBLÈMES POUR LES TÉLÉPHONES (RESPONSIVE)
+     ======================================================== */
+        @media (max-width: 768px) {
+
+            /* Ajustement de la page */
+            body {
+                padding: 20px 10px;
+            }
+
+            /* Le titre devient plus petit pour rentrer sur l'écran */
+            .page-title {
+                font-size: 2rem;
+                margin: 0 0 30px 0;
+                letter-spacing: 1px;
+            }
+
+            /* La galerie passe en colonne (les jeux s'empilent) */
+            .flex-gallery {
+                flex-direction: column;
+                /* Organise de haut en bas */
+                gap: 25px;
+                /* Réduit l'espace géant entre les jeux */
+                width: 100%;
+            }
+
+            /* Les boîtes en verre prennent toute la largeur dispo */
+            .image-link {
+                width: 90%;
+                padding: 15px;
+            }
+
+            /* Les images rétrécissent un peu pour rester jolies */
+            .image-link img {
+                max-height: 130px;
+            }
+
+            /* Désactive l'effet de rebond sur mobile car il n'y a pas de souris */
+            .image-link:hover {
+                transform: none;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Bienvenue sur Natschos Lab</h1>
-    <p>Ceci est la page d'accueil principale.</p>
-    
-    <!-- Vous pouvez mettre un lien vers votre jeu ici -->
-    <a href="https://natschos-lab.github.io/Game-laboratory-/">Jouer à Game Laboratory</a>
+
+    <h1 class="page-title">Bienvenue sur la page de jeux</h1>
+
+    <div class="flex-gallery">
+        <!-- IMAGE 1 : INTRUSION -->
+        <a href="https://natschos-lab.github.io/Intrusion/" class="image-link" title="Aller vers Intrusion">
+            <img src="intr.png" alt="Intrusion">
+        </a>
+
+        <!-- IMAGE 2 : TUTUSMO -->
+        <a href="https://natschos-lab.github.io/Game-laboratory-/" class="image-link" title="Aller vers Tutusmo">
+            <img src="tutusmo.png" alt="Tutusmo">
+        </a>
+
+        <!-- IMAGE 3 : TOUPIL -->
+        <a href="https://natschos-lab.github.io/Toupil/" class="image-link" title="Aller vers Toupil">
+            <img src="toupil.png" alt="Toupil">
+        </a>
+    </div>
+
 </body>
+
 </html>
